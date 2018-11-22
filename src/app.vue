@@ -1,21 +1,33 @@
 <template>
   <div id="app" class="app">
-    <!-- don't using layout -->
-    <router-view/>
+    <!-- header -->
+    <header class="header">
+      <top/>
+    </header>
+
+    <!-- do not using layout -->
+    <router-view v-if="notLayout"/>
 
     <!-- using layout -->
-    <layout/>
+    <layout v-else/>
   </div>
 </template>
 
 <script>
+  import Top from './views/layout/top';
   import Layout from './views/layout';
 
   export default {
     name: 'App',
-    components: {Layout},
-    computed: {},
-    created() {
+    components: {Top, Layout},
+    computed: {
+      // whether not using layout
+      notLayout() {
+        const currentRoute = this.$route;
+
+        return currentRoute.meta && currentRoute.meta.notLayout;
+
+      }
     }
   }
 </script>

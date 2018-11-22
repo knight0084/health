@@ -1,5 +1,5 @@
 import utils from '../utils';
-import genMenuTree from './gen-menu-tree';
+import genMenu from './gen-menu';
 
 // recursively get the deepest first-leaf-menu-item's id
 function recursivelyGetFirstChildId(menuItem) {
@@ -16,7 +16,7 @@ function recursivelyGetFirstChildId(menuItem) {
 // get the initial route-name according to role
 export default () => {
   const {role} = utils.sessionStorage.get('profile');
-  const menuTree = genMenuTree(role);
+  const menuTree = genMenu(role);
 
   // regarding the first-leaf-menu-item's name as the initial route name
   return recursivelyGetFirstChildId(menuTree[0]);
