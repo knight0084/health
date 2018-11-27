@@ -4,4 +4,4 @@ import query from './query';
 import sessionStorage from './session-storage';
 import localStorage from './localStorage';
 
-export default {string, date, query, sessionStorage, localStorage};
+export {string, date, query, sessionStorage, localStorage};

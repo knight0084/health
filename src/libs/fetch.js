@@ -2,8 +2,6 @@ import axios from 'axios';
 import {protocol, host, port, prefix, version} from '../configs/api';
 import utils from "../utils";
 import {LoadingBar, Notice} from 'iview';
-import store from '../store';
-import {global} from '../store/types';
 import router from '../router';
 
 LoadingBar.config({
@@ -72,15 +70,6 @@ export default async params => {
 
       // token invalid or token expired
       if (+code === 401 || +code === 403) {
-        const isTokenValid = store.state.isTokenValid;
-
-        // set the status of token invalid
-        if (isTokenValid) {
-          store.commit(global.UPDATE_TOKEN_VALID_STATUS, false);
-
-          Notice.error({title: '登录失效', desc: '登录失效，请重新登录'});
-        }
-
         router.replace({name: 'login'});
 
         return Promise.reject(new Error(+code === 401 ? '无效的TOKEN' : 'TOKEN过期'));
@@ -101,17 +90,6 @@ export default async params => {
       return Promise.reject(e);
     }
   );
-
-  /*{
-    data,
-      // transform request data to query-string if Content-Type is 'application/x-www-form-urlencoded'
-      transformRequest: [function (data, headers) {
-    const contentType = headers['Content-Type'] || headers['content-type'];
-
-    return contentType && contentType.includes('application/x-www-form-urlencoded')
-      ? utils.query.serialize(data) : data;
-  }]
-  }*/
 
   // special config of request
   const specialConfig = method === 'post' || method === 'put' || method === 'patch'

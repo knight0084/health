@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-
-// home
+import {LoadingBar} from 'iview';
 import Home from '../views/home';
 
 Vue.use(Router);
@@ -23,17 +22,18 @@ const familyDoctor = {
     {
       name: 'family-doctor',
       path: '',
-      component: () => import(/* webpackChunkName: 'family-doctor-contract' */ '../views/family-doctor/contract')
+      component: () => import(/* webpackChunkName: 'family-doctor' */ '../views/family-doctor/contract'),
+      meta: {highlight: 'family-doctor-contract'}
     },
     {
       name: 'family-doctor-contract',
       path: 'contract',
-      component: () => import(/* webpackChunkName: 'family-doctor-contract' */ '../views/family-doctor/contract')
+      component: () => import(/* webpackChunkName: 'family-doctor' */ '../views/family-doctor/contract')
     },
     {
       name: 'family-doctor-statement',
       path: 'statement',
-      component: () => import(/* webpackChunkName: 'family-doctor-statement' */ '../views/family-doctor/statement')
+      component: () => import(/* webpackChunkName: 'family-doctor' */ '../views/family-doctor/statement')
     }
   ]
 };
@@ -46,17 +46,18 @@ const transferTreatment = {
     {
       name: 'transfer-treatment',
       path: '',
-      component: () => import(/* webpackChunkName: 'transfer-treatment-coordination' */ '../views/transfer-treatment/coordination')
+      component: () => import(/* webpackChunkName: 'transfer-treatment' */ '../views/transfer-treatment/coordination'),
+      meta: {highlight: 'transfer-treatment-coordination'}
     },
     {
       name: 'transfer-treatment-coordination',
       path: 'coordination',
-      component: () => import(/* webpackChunkName: 'transfer-treatment-coordination' */ '../views/transfer-treatment/coordination')
+      component: () => import(/* webpackChunkName: 'transfer-treatment' */ '../views/transfer-treatment/coordination')
     },
     {
       name: 'transfer-treatment-statement',
       path: 'statement',
-      component: () => import(/* webpackChunkName: 'transfer-treatment-statement' */ '../views/transfer-treatment/statement')
+      component: () => import(/* webpackChunkName: 'transfer-treatment' */ '../views/transfer-treatment/statement')
     }
   ]
 };
@@ -86,7 +87,18 @@ export default new Router({
     newsInfo,
     healthPedia
   ],
+  beforeEach(to, from, next) {
+    // TODO: loading
+
+    next();
+
+  },
+  afterEach(to, from) {
+    // TODO: loading
+
+  },
   scrollBehavior(to, from, savedPosition) {
     return savedPosition || {x: 0, y: 0};
+
   }
 });

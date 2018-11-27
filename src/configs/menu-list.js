@@ -1,4 +1,4 @@
-// menu-items
+// menu list
 export default [
   {
     id: 1,

@@ -16,6 +16,8 @@
 <script>
   import Top from './views/layout/top';
   import Layout from './views/layout';
+  import {mapMutations} from 'vuex';
+  import {sessionStorage} from './utils';
 
   export default {
     name: 'App',
@@ -28,13 +30,53 @@
         return currentRoute.meta && currentRoute.meta.notLayout;
 
       }
+    },
+    watch: {
+      $route(n) {
+        this.updateActivatedName(n);
+
+      }
+    },
+    methods: {
+      ...mapMutations('layout', [
+        'mtt_update_menu_tree',
+        'mtt_update_activated_name'
+      ]),
+
+      // update current activated menu name
+      updateActivatedName(route) {
+        const {name, meta} = route;
+        const activatedName = meta && meta.highlight ? meta.highlight : name;
+
+        this.mtt_update_activated_name(activatedName);
+
+      }
+    },
+    created() {
+      const profile = sessionStorage.get('profile');
+
+      // update menu-tree by role
+      this.mtt_update_menu_tree(profile ? profile.role : null);
+
+      // update activate menu name
+      this.updateActivatedName(this.$route);
+
     }
   }
 </script>
 
 <style scoped lang="less">
   .app {
-    width: 100%;
     height: 100%;
+
+    // header
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1001;
+      width: 100%;
+    }
+
   }
 </style>

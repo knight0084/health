@@ -1,12 +1,6 @@
-// map of role-menu
+// mapped menu according to the role
 export default {
-  sopm: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-  sops: [1, 2, 3, 4, 5, 9, 10],
-  sop: [1, 2, 3, 4, 5, 9, 10],
-  dsop: [1, 2, 3, 4, 5, 9, 10],
-  division: [9, 10],
-  manager: [9, 10],
-  sale: [9, 10],
+  doctor: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
   // do not match anyone above, use default
-  default: [9, 10]
+  default: [1, 10, 11]
 };

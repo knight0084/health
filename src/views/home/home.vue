@@ -1,5 +1,10 @@
 <template>
-  <div class="home">home</div>
+  <div class="home">
+    <!-- login form -->
+    <Form>
+      <FormItem></FormItem>
+    </Form>
+  </div>
 </template>
 
 <script>
@@ -10,6 +15,7 @@
 
 <style scoped lang="less">
   .home {
-
+    height: 100%;
+    background: url('../../assets/img/home/bg.png');
   }
 </style>
