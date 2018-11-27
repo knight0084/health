@@ -55,15 +55,44 @@
     },
     methods: {
       handleMenuSelect(name) {
-        console.log(name);
+        this.$router.push({name});
 
       }
     }
   }
 </script>
 
-<style scoped lang="less">
+<style lang="less">
   .navigator {
+
+    .navigator-menu.ivu-menu-light.ivu-menu-horizontal {
+      background-color: transparent;
+
+      &::after {
+        background-color: transparent;
+      }
+
+      // top-level
+      > .ivu-menu-item,
+        // second-level
+      > .ivu-menu-submenu .ivu-menu-submenu-title {
+        font-weight: 600;
+        color: #fff;
+        text-shadow: 0 1px 0 #999;
+      }
+
+      // activated
+      > .ivu-menu-item.ivu-menu-item-active {
+        color: #2990d3;
+        text-shadow: none;
+      }
+
+      > .ivu-menu-submenu.ivu-menu-item-active .ivu-menu-submenu-title {
+        color: #2990d3;
+        text-shadow: none;
+      }
+
+    }
 
   }
 </style>

@@ -70,6 +70,8 @@ export default async params => {
 
       // token invalid or token expired
       if (+code === 401 || +code === 403) {
+        // TODO: remove the profile and token, to avoid generate menu tree without 'login'
+
         router.replace({name: 'login'});
 
         return Promise.reject(new Error(+code === 401 ? '无效的TOKEN' : 'TOKEN过期'));

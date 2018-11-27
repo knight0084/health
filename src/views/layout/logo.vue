@@ -1,5 +1,6 @@
 <template>
-  <div class="logo">logo</div>
+  <!-- logo -->
+  <div class="logo"></div>
 </template>
 
 <script>
@@ -10,6 +11,6 @@
 
 <style scoped lang="less">
   .logo {
-
+    background: url('../../assets/img/common/logo.png') no-repeat center;
   }
 </style>
