@@ -3,8 +3,8 @@ const env = process.env.VUE_APP_API_ENV || 'development';
 let protocol = window.location.protocol
   , host
   , port
-  , version = '/v2'
-  , prefix = '/api';
+  , version = ''
+  , prefix = '';
 
 switch (env) {
   case 'test':
@@ -18,8 +18,8 @@ switch (env) {
     break;
 
   default :
-    host = '10.247.67.206';
-    port = 8001;
+    host = '192.168.2.103';
+    port = 8011;
 }
 
 export {protocol, host, port, version, prefix};

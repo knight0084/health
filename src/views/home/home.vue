@@ -59,6 +59,7 @@
 
 <script>
   import {login} from '../../apis';
+  import {sessionStorage} from '../../utils';
 
   export default {
     name: 'Home',
@@ -101,17 +102,13 @@
         // hide loading
         this.registering = false;
 
-        if (!res || !res.result) {
-          this.usnOrPwdError = true;
+        if (!res) return;
 
-          return;
-        }
-
-        const {result: {token, profile}} = res;
+        const {data: {token, userinfo}} = res;
 
         // store token and profile in session storage
-        utils.sessionStorage.set('token', token);
-        utils.sessionStorage.set('profile', profile);
+        sessionStorage.set('token', token);
+        sessionStorage.set('profile', userinfo);
 
       }
     },

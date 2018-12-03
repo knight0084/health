@@ -1,12 +1,8 @@
 import axios from 'axios';
 import {protocol, host, port, prefix, version} from '../configs/api';
-import utils from "../utils";
+import {sessionStorage} from "../utils";
 import {LoadingBar, Notice} from 'iview';
 import router from '../router';
-
-LoadingBar.config({
-  height: 3
-});
 
 const baseURL = `${protocol}//${host}:${port}${prefix}${version}`;
 const baseTimeout = 8000;
@@ -29,18 +25,16 @@ export default async params => {
     function (config) {
       const {url, headers} = config;
 
-      // not login endpoint
-      if (!url.match(/^\/login/i)) {
-        headers['Authorization'] = utils.sessionStorage.get('token') || '';
-      }
+      // the endpoint that do not starts width '/auth' needs to attach custom header 'Authorization'
+      !url.match(/^\/auth/i) && (headers['Authorization'] = sessionStorage.get('token') || '');
 
       return config;
+
     },
     // do something with request error
     function (e) {
-      /* ------- http error -------- */
-      console.error('http config error: ', e);
       return Promise.reject(e);
+
     }
   );
 
@@ -48,48 +42,13 @@ export default async params => {
   instance.interceptors.response.use(
     // do something with response data
     function (response) {
-      /* ------- business error -------- */
-      const {data} = response;
+      return Promise.resolve(response.data);
 
-      // server error
-      if (!data) {
-        return Promise.reject(new Error('服务异常'));
-      }
-
-      const {code} = data;
-
-      // server error
-      if (+code >= 500) {
-        return Promise.reject(new Error('服务异常'));
-      }
-
-      // params error
-      if (+code === 400) {
-        return Promise.reject(new Error('参数有误'));
-      }
-
-      // token invalid or token expired
-      if (+code === 401 || +code === 403) {
-        // TODO: remove the profile and token, to avoid generate menu tree without 'login'
-
-        router.replace({name: 'login'});
-
-        return Promise.reject(new Error(+code === 401 ? '无效的TOKEN' : 'TOKEN过期'));
-      }
-
-      return Promise.resolve(data);
     },
     // do something with response error
     function (e) {
-      /* ------- http error -------- */
-      console.error('http response error: ', e);
-
-      !silence && Notice.error({
-        title: '服务超时',
-        desc: '服务超时，请重试'
-      });
-
       return Promise.reject(e);
+
     }
   );
 
@@ -117,17 +76,40 @@ export default async params => {
 
   // send request
   try {
+    // show loading
     !silence && LoadingBar.start();
 
     const res = await instance.request(specialConfig);
+    const {code} = res;
 
+    // hide loading
     !silence && LoadingBar.finish();
+
+    /* ============= business error ============= */
+    // token invalid or token expired
+    if (+code === 4001) {
+      Notice.error({
+        title: '登录失效',
+        desc: '登录失效，请重新登录'
+      });
+
+      // remove the token and profile
+      sessionStorage.remove('token');
+      sessionStorage.remove('profile');
+
+      // redirect to the home
+      router.replace({name: 'home'});
+
+      return null;
+    }
 
     return res;
   }
   catch (e) {
-    // TODO: handle the errors both http-error and business-error here, not in the response interceptor
+    /* ============= http error ============= */
+    console.error('http layer error: ', e);
 
+    // loading error
     !silence && LoadingBar.error();
 
     return null;
