@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import {LoadingBar} from 'iview';
+import authRoute from '../libs/auth-route';
+import {sessionStorage} from '../utils';
+import {LoadingBar, Notice} from 'iview';
 import Home from '../views/home';
 
 Vue.use(Router);
@@ -78,7 +80,7 @@ const healthPedia = {
 
 
 // create an instance of vue-router
-export default new Router({
+const router = new Router({
   mode: 'hash',
   routes: [
     home,
@@ -87,18 +89,38 @@ export default new Router({
     newsInfo,
     healthPedia
   ],
-  beforeEach(to, from, next) {
-    // TODO: loading
-
-    next();
-
-  },
-  afterEach(to, from) {
-    // TODO: loading
-
-  },
   scrollBehavior(to, from, savedPosition) {
     return savedPosition || {x: 0, y: 0};
 
   }
 });
+
+// before each
+router.beforeEach((to, from, next) => {
+  LoadingBar.start();
+
+  const profile = sessionStorage.get('proflie');
+  const valid = authRoute(profile ? profile.role : '', to.name);
+
+  if (!valid) {
+    Notice.error({
+      title: '没有权限',
+      desc: '没有权限，请登录后访问'
+    });
+
+    LoadingBar.error();
+
+    return;
+  }
+
+  next();
+
+});
+
+// after each
+router.afterEach((to, from) => {
+  LoadingBar.finish();
+
+});
+
+export default router;
