@@ -35,14 +35,11 @@
     width: 100%;
     height: 100%;
 
-    // header
-    .header {
-
-    }
-
     // main content
     .main {
-
+      width: 1200px;
+      min-height: 100%;
+      margin: 0 auto;
     }
 
   }

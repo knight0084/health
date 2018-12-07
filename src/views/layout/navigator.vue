@@ -76,7 +76,7 @@
       > .ivu-menu-item,
         // second-level
       > .ivu-menu-submenu .ivu-menu-submenu-title {
-        font-weight: 600;
+        font-weight: 700;
         color: #fff;
         text-shadow: 0 1px 0 #999;
       }
