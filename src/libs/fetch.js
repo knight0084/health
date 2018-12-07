@@ -42,7 +42,7 @@ export default async params => {
   instance.interceptors.response.use(
     // do something with response data
     function (response) {
-      return Promise.resolve(response.data);
+      return Promise.resolve(response);
 
     },
     // do something with response error
@@ -80,7 +80,7 @@ export default async params => {
     !silence && LoadingBar.start();
 
     const res = await instance.request(specialConfig);
-    const {code} = res;
+    const {data: {code}} = res;
 
     // hide loading
     !silence && LoadingBar.finish();
@@ -98,12 +98,12 @@ export default async params => {
       sessionStorage.remove('profile');
 
       // redirect to the home
-      router.replace({name: 'home'});
+      router.push({name: 'home'});
 
       return null;
     }
 
-    return res;
+    return res.data;
   }
   catch (e) {
     /* ============= http error ============= */

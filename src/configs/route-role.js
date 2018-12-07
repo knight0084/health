@@ -1,5 +1,19 @@
 // mapped route according to the role
 export default {
+  all: {
+    routes: [
+      'home',
+      'family-doctor',
+      'family-doctor-contract',
+      'family-doctor-statement',
+      'transfer-treatment',
+      'transfer-treatment-coordination',
+      'transfer-treatment-statement',
+      'news-info',
+      'health-pedia'
+    ],
+    initial: 'home'
+  },
   doctor: {
     routes: [
       'home',

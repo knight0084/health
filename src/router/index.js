@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import routeRole from '../configs/route-role';
 import authRoute from '../libs/auth-route';
 import {sessionStorage} from '../utils';
 import {LoadingBar, Notice} from 'iview';
@@ -99,10 +100,26 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   LoadingBar.start();
 
-  const profile = sessionStorage.get('proflie');
-  const valid = authRoute(profile ? profile.role : '', to.name);
+  // all routes
+  const allRoutes = routeRole['all'].routes;
 
-  if (!valid) {
+  if (!allRoutes.includes(to.name)) {
+    Notice.error({
+      title: '网址错误',
+      desc: '网址错误，请查证后重试'
+    });
+
+    LoadingBar.error();
+
+    return;
+  }
+
+  // profile
+  const profile = sessionStorage.get('profile');
+  // has permission of specified route name
+  const hasPermission = authRoute(profile ? profile.role : '', to.name);
+
+  if (!hasPermission) {
     Notice.error({
       title: '没有权限',
       desc: '没有权限，请登录后访问'
