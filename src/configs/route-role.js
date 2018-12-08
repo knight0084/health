@@ -8,6 +8,8 @@ export default {
       'family-doctor-statement',
       'transfer-treatment',
       'transfer-treatment-coordination',
+      'transfer-treatment-coordination-list',
+      'transfer-treatment-coordination-add',
       'transfer-treatment-statement',
       'news-info',
       'health-pedia'
@@ -22,6 +24,8 @@ export default {
       'family-doctor-statement',
       'transfer-treatment',
       'transfer-treatment-coordination',
+      'transfer-treatment-coordination-list',
+      'transfer-treatment-coordination-add',
       'transfer-treatment-statement',
       'news-info',
       'health-pedia'

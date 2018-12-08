@@ -38,7 +38,7 @@
 <style scoped lang="less">
   .banner {
     height: 525px;
-    padding-top: 200px;
+    padding-top: 180px;
     background: no-repeat center;
     background-size: cover;
 

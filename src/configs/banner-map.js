@@ -10,7 +10,7 @@ export default {
     title: '签约管理'
   },
   'family-doctor-statement': {
-    image: require('../assets/img/family-doctor/contract/banner.png'),
+    image: require('../assets/img/family-doctor/statement/banner.png'),
     icon: '',
     title: '签约统计'
   },
@@ -24,8 +24,18 @@ export default {
     icon: '',
     title: '协作管理'
   },
-  'transfer-treatment-statement': {
+  'transfer-treatment-coordination-list': {
     image: require('../assets/img/transfer-treatment/coordination/banner.png'),
+    icon: '',
+    title: '协作管理'
+  },
+  'transfer-treatment-coordination-add': {
+    image: require('../assets/img/transfer-treatment/coordination/banner.png'),
+    icon: '',
+    title: '协作管理'
+  },
+  'transfer-treatment-statement': {
+    image: require('../assets/img/family-doctor/statement/banner.png'),
     icon: '',
     title: '协作统计'
   },

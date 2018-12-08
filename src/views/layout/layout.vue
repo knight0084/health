@@ -57,7 +57,7 @@
     // main
     .layout-main {
       position: absolute;
-      top: 400px;
+      top: 380px;
       left: 50%;
       width: 1200px;
       min-height: 300px;

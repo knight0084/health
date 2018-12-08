@@ -53,9 +53,29 @@ const transferTreatment = {
       meta: {highlight: 'transfer-treatment-coordination'}
     },
     {
-      name: 'transfer-treatment-coordination',
       path: 'coordination',
-      component: () => import(/* webpackChunkName: 'transfer-treatment' */ '../views/transfer-treatment/coordination')
+      component: () => import(/* webpackChunkName: 'transfer-treatment' */ '../views/transfer-treatment/coordination'),
+      children: [
+        {
+          name: 'transfer-treatment-coordination',
+          path: '',
+          component: () => import(/* webpackChunkName: 'transfer-treatment' */ '../views/transfer-treatment/coordination/list'),
+          meta: {highlight: 'transfer-treatment-coordination'}
+        },
+        {
+          name: 'transfer-treatment-coordination-list',
+          path: 'list',
+          component: () => import(/* webpackChunkName: 'transfer-treatment' */ '../views/transfer-treatment/coordination/list'),
+          meta: {highlight: 'transfer-treatment-coordination'}
+        },
+        {
+          props: true,
+          name: 'transfer-treatment-coordination-add',
+          path: 'add/:id?',
+          component: () => import(/* webpackChunkName: 'transfer-treatment' */ '../views/transfer-treatment/coordination/add'),
+          meta: {highlight: 'transfer-treatment-coordination'}
+        }
+      ]
     },
     {
       name: 'transfer-treatment-statement',
