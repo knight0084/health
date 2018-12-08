@@ -114,7 +114,7 @@
 
     // news-pane
     .health-pedia-pane {
-      margin: 400px 0 50px;
+      margin: 400px 0 0;
       border-radius: 5px 5px 0 0;
       overflow: hidden;
 
