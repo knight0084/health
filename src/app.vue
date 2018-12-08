@@ -76,8 +76,7 @@
       left: 0;
       z-index: 1001;
       width: 100%;
-      // TODO: bgc of the nav
-      background-color: rgba(8, 118, 213, .1);
+      background-color: rgba(41, 144, 211, .6);
     }
 
   }

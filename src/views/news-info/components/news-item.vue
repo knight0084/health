@@ -112,7 +112,7 @@
 
       .date-day,
       .date-month {
-        color: #0876D5;
+        color: rgb(41, 144, 211);
       }
 
     }
@@ -154,7 +154,7 @@
 
         span {
           margin-left: -5px;
-          color: #0876D5;
+          color: rgb(41, 144, 211);
           cursor: pointer;
         }
 

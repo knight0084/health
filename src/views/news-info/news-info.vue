@@ -99,7 +99,7 @@
         // banner-title
         .banner-title {
           font: 700 42px Cursive, Seri;
-          color: #0876D5;
+          color: rgb(41, 144, 211);
           letter-spacing: 5px;
         }
 
