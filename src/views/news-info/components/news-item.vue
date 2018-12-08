@@ -90,8 +90,7 @@
   .news-item {
     .clear();
 
-    padding: 40px 80px;
-    background-color: #fff;
+    padding: 40px;
 
     .item-date,
     .item-cover,
@@ -133,7 +132,7 @@
 
     // content
     .item-content {
-      width: 675px;
+      width: 705px;
       margin-left: 40px;
 
       .content-title {

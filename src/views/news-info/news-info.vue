@@ -1,13 +1,5 @@
 <template>
   <div class="news-info">
-    <!-- banner -->
-    <div class="news-info-banner">
-      <h2 class="banner-text">
-        <span class="banner-icon"></span>
-        <span class="banner-title">新闻资讯</span>
-      </h2>
-    </div>
-
     <!-- tab -->
     <div class="news-info-tab"></div>
 
@@ -17,7 +9,7 @@
       <ul class="news-info-pane-list">
         <li class="news-info-pane-item"
             v-for="news in newsList">
-          <news-item :value="news"></news-item>
+          <news-item :value="news"/>
         </li>
       </ul>
 
@@ -82,30 +74,7 @@
 
 <style scoped lang="less">
   .news-info {
-
-    // news-banner
-    .news-info-banner {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 525px;
-      background: url('../../assets/img/news-info/banner.png') no-repeat;
-
-      .banner-text {
-        margin-top: 200px;
-        text-align: center;
-
-        // banner-title
-        .banner-title {
-          font: 700 42px Cursive, Seri;
-          color: rgb(41, 144, 211);
-          letter-spacing: 5px;
-        }
-
-      }
-
-    }
+    margin-top: -24px;
 
     // news-tab
     .news-info-tab {
@@ -114,9 +83,6 @@
 
     // news-pane
     .news-info-pane {
-      margin: 400px 0 0;
-      border-radius: 5px 5px 0 0;
-      overflow: hidden;
 
       // news-list
       .news-info-pane-list {
@@ -141,7 +107,7 @@
 
       // news-pager
       .news-info-pane-pager {
-        margin: 50px 0;
+        margin: 30px 0;
         text-align: center;
       }
 
